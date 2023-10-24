@@ -34,7 +34,7 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('region_id'),
+                Tables\Columns\TextColumn::make('region.name'),
             ])
             ->filters([
                 //

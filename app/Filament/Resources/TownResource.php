@@ -35,8 +35,8 @@ class TownResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('department_id'),
-                Tables\Columns\TextColumn::make('cp_id'),
+                Tables\Columns\TextColumn::make('department.name'),
+                Tables\Columns\TextColumn::make('cp.cp'),
             ])
             ->filters([
                 //
