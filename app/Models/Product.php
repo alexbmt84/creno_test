@@ -30,4 +30,10 @@ class Product extends Model
 
     }
 
+    public function tva(): BelongsTo {
+
+        return $this->belongsTo(Tva::class);
+
+    }
+
 }

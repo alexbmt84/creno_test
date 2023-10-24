@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\Level2Resource\Pages;
-use App\Filament\Resources\Level2Resource\RelationManagers;
-use App\Models\Level2;
+use App\Filament\Resources\TvaResource\Pages;
+use App\Filament\Resources\TvaResource\RelationManagers;
+use App\Models\Tva;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class Level2Resource extends Resource
+class TvaResource extends Resource
 {
-    protected static ?string $model = Level2::class;
+    protected static ?string $model = Tva::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,6 +23,7 @@ class Level2Resource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('rate')->required(),
                 Forms\Components\TextInput::make('name')->required(),
             ]);
     }
@@ -31,6 +32,7 @@ class Level2Resource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('rate'),
                 Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
@@ -57,9 +59,9 @@ class Level2Resource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLevel2s::route('/'),
-            'create' => Pages\CreateLevel2::route('/create'),
-            'edit' => Pages\EditLevel2::route('/{record}/edit'),
+            'index' => Pages\ListTvas::route('/'),
+            'create' => Pages\CreateTva::route('/create'),
+            'edit' => Pages\EditTva::route('/{record}/edit'),
         ];
     }
 }

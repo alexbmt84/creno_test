@@ -24,9 +24,17 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('entity_id')->relationship(name: 'entity', titleAttribute: 'name'),
-                Select::make('level1_id')->relationship(name: 'level1', titleAttribute: 'name'),
-                Select::make('level2_id')->relationship(name: 'level2', titleAttribute: 'name')
+                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('scientific_name'),
+                Forms\Components\TextInput::make('price')->required(),
+                Forms\Components\TextInput::make('description')->required(),
+                Select::make('entity_id')->relationship(name: 'entity', titleAttribute: 'name')->required(),
+                Select::make('level1_id')->relationship(name: 'level1', titleAttribute: 'name')->required(),
+                Select::make('level2_id')->relationship(name: 'level2', titleAttribute: 'name')->required(),
+                Select::make('tva_id')->relationship(name: 'tva', titleAttribute: 'name')->required(),
+                Forms\Components\TextInput::make('available')->required(),
+                Forms\Components\TextInput::make('net_weight')->required(),
+                Forms\Components\FileUpload::make('picture'),
             ]);
     }
 
@@ -34,12 +42,21 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('scientific_name'),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('entity.name'),
+                Tables\Columns\TextColumn::make('level1.name'),
+                Tables\Columns\TextColumn::make('level2.name'),
+                Tables\Columns\TextColumn::make('tva.name'),
+                Tables\Columns\TextColumn::make('available'),
+                Tables\Columns\TextColumn::make('net_weight'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
