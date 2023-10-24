@@ -20,4 +20,8 @@ class Entity extends Model
         return $this->hasMany(Catalog::class);
     }
 
+    public function histories(): HasMany {
+        return $this->hasMany(History::class);
+    }
+
 }
