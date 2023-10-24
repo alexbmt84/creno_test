@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\CpResource\Pages;
+use App\Filament\Resources\CpResource\RelationManagers;
+use App\Models\Cp;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,12 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Rawilk\FilamentPasswordInput\Password;
-use Filament\Forms\Components\FileUpload;
 
-class UserResource extends Resource
+class CpResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Cp::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -25,10 +23,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Password::make('password')->label('Password'),
-                Forms\Components\FileUpload::make('avatar')->required(),
+                Forms\Components\TextInput::make('cp')->required(),
             ]);
     }
 
@@ -36,8 +31,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('cp'),
             ])
             ->filters([
                 //
@@ -63,9 +57,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListCps::route('/'),
+            'create' => Pages\CreateCp::route('/create'),
+            'edit' => Pages\EditCp::route('/{record}/edit'),
         ];
     }
 }

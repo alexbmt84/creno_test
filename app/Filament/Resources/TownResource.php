@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\TownResource\Pages;
+use App\Filament\Resources\TownResource\RelationManagers;
+use App\Models\Town;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,12 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Rawilk\FilamentPasswordInput\Password;
-use Filament\Forms\Components\FileUpload;
 
-class UserResource extends Resource
+class TownResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Town::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,9 +24,8 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Password::make('password')->label('Password'),
-                Forms\Components\FileUpload::make('avatar')->required(),
+                Forms\Components\TextInput::make('department_id')->required(),
+                Forms\Components\TextInput::make('cp_id')->required(),
             ]);
     }
 
@@ -37,7 +34,8 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('department_id'),
+                Tables\Columns\TextColumn::make('cp_id'),
             ])
             ->filters([
                 //
@@ -63,9 +61,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListTowns::route('/'),
+            'create' => Pages\CreateTown::route('/create'),
+            'edit' => Pages\EditTown::route('/{record}/edit'),
         ];
     }
 }
