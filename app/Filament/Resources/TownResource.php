@@ -6,6 +6,7 @@ use App\Filament\Resources\TownResource\Pages;
 use App\Filament\Resources\TownResource\RelationManagers;
 use App\Models\Town;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,8 +25,8 @@ class TownResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('department_id')->required(),
-                Forms\Components\TextInput::make('cp_id')->required(),
+                Select::make('department_id')->relationship(name: 'department', titleAttribute: 'name'),
+                Select::make('cp_id')->relationship(name: 'cp', titleAttribute: 'cp'),
             ]);
     }
 

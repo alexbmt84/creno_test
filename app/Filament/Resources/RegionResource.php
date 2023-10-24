@@ -25,7 +25,7 @@ class RegionResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('country_id')->required(),
+                Select::make('country_id')->relationship(name: 'country', titleAttribute: 'name')
             ]);
     }
 
