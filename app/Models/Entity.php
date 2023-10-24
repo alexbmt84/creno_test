@@ -16,4 +16,8 @@ class Entity extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function lists(): HasMany {
+        return $this->hasMany(Catalog::class);
+    }
+
 }
