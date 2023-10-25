@@ -24,4 +24,8 @@ class Entity extends Model
         return $this->hasMany(History::class);
     }
 
+    public function addresses(): HasMany {
+        return $this->hasMany(Address::class);
+    }
+
 }

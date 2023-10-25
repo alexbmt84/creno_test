@@ -12,7 +12,7 @@ class Country extends Model
 
        protected $guarded = [];
 
-       public function regions(): HasMany {
+    public function regions(): HasMany {
         return $this->hasMany(Region::class);
     }
 
