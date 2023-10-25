@@ -26,6 +26,9 @@ class RegionResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
                 Select::make('country_id')->relationship(name: 'country', titleAttribute: 'name')
+                    ->searchable()
+                    ->searchPrompt('Search a country')
+                    ->searchingMessage('Searching countries...')
             ]);
     }
 
