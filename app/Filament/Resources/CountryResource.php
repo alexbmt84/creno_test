@@ -6,6 +6,7 @@ use App\Filament\Resources\CountryResource\Pages;
 use App\Filament\Resources\CountryResource\RelationManagers;
 use App\Models\Country;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -28,8 +29,14 @@ class CountryResource extends Resource
                 Select::make('active')->options([
                     '0' => 'False',
                     '1' => 'True',
-                ])
+                ]),
+                Repeater::make('regions')->relationship()
+                    ->schema([
+                        Forms\Components\TextInput::make('name')->required(),
+                    ])
+                    ->columns(1)
             ]);
+
     }
 
     public static function table(Table $table): Table
@@ -56,7 +63,7 @@ class CountryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\RegionsRelationManager::class,
         ];
     }
 
