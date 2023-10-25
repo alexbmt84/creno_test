@@ -41,4 +41,8 @@ class Product extends Model
         return $this->hasMany(Offer::class);
     }
 
+    public function certifications(): BelongsTo {
+        return $this->belongsTo(Certification::class);
+    }
+
 }

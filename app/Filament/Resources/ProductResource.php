@@ -35,6 +35,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('available')->required(),
                 Forms\Components\TextInput::make('net_weight')->required(),
                 Forms\Components\FileUpload::make('picture'),
+                Select::make('certification_id')->relationship(name: 'certifications', titleAttribute: 'name')->required(),
             ]);
     }
 
