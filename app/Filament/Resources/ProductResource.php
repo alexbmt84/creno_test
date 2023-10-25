@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -12,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
@@ -35,7 +37,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('available')->required(),
                 Forms\Components\TextInput::make('net_weight')->required(),
                 Forms\Components\FileUpload::make('picture'),
-                Select::make('certification_id')->relationship(name: 'certifications', titleAttribute: 'name')->required(),
+                Select::make('certification_id')->multiple()->relationship(name: 'certifications', titleAttribute: 'name')->required(),
             ]);
     }
 
@@ -82,4 +84,10 @@ class ProductResource extends Resource
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
+
+    protected function handleRecordCreation(array $data): Model
+    {
+        return static::getModel()::create($data);
+    }
+
 }

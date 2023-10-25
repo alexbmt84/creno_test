@@ -33,7 +33,7 @@ class CountryResource extends Resource
                 Repeater::make('regions')->relationship()
                     ->schema([
                         Forms\Components\TextInput::make('name')->required(),
-                    ])
+                    ])->hiddenOn('edit')
                     ->columns(1)
             ]);
 
