@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
