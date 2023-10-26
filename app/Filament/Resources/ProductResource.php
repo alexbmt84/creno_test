@@ -36,7 +36,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('available')->required(),
                 Forms\Components\TextInput::make('net_weight')->required(),
                 Forms\Components\FileUpload::make('picture'),
-                Select::make('certification_id')->multiple()->relationship(name: 'certifications', titleAttribute: 'name')->required(),
+                Select::make('certification_id')->relationship(name: 'certifications', titleAttribute: 'name')->required(),
             ]);
     }
 
@@ -82,11 +82,6 @@ class ProductResource extends Resource
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
-    }
-
-    protected function handleRecordCreation(array $data): Model
-    {
-        return static::getModel()::create($data);
     }
 
 }
